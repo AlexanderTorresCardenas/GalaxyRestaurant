@@ -8,7 +8,22 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.DataAccess\Restaurant.DataAccess.csproj" />
+    <ProjectReference Include="..\Restaurant.Entities\Restaurant.Entities.csproj" />
+    <ProjectReference Include="..\Restaurant.Repositories\Restaurant.Repositories.csproj" />
+    <ProjectReference Include="..\Restaurant.Shared\Restaurant.Shared.csproj" />
   </ItemGroup>
 
 </Project>

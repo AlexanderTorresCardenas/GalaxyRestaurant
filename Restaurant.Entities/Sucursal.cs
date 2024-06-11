@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Entities
 {
-    public class Sucursal
+    public class Sucursal:EntityBase
     {
         public string Nombre { get; set; } = default!;
         public string? Direccion { get; set;}

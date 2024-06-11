@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Entities", "Restaurant.Entities\Restaurant.Entities.csproj", "{7459F191-EE9C-409F-A2FB-A55B7BAD75CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Entities", "Restaurant.Entities\Restaurant.Entities.csproj", "{7459F191-EE9C-409F-A2FB-A55B7BAD75CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-FrontEnd", "1-FrontEnd", "{A896CFA9-B83D-482A-A6C3-45B056C07CA7}"
 EndProject
@@ -21,19 +21,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Unit Test", "5-Unit Test"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Shared", "3-Shared", "{1C71637F-D3FF-471E-9D14-1B8BFB47AEBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.DataAccess", "Restaurant.DataAccess\Restaurant.DataAccess.csproj", "{51C6570B-827A-4C3B-8219-12692F3B62B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.DataAccess", "Restaurant.DataAccess\Restaurant.DataAccess.csproj", "{51C6570B-827A-4C3B-8219-12692F3B62B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Repositories", "Restaurant.Repositories\Restaurant.Repositories.csproj", "{CC2E9D40-AB2B-4C47-8FB1-9CF7D41C72F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Repositories", "Restaurant.Repositories\Restaurant.Repositories.csproj", "{CC2E9D40-AB2B-4C47-8FB1-9CF7D41C72F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Services", "Restaurant.Services\Restaurant.Services.csproj", "{6EF29BFC-A383-4EFC-938F-67C2CFF505B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Services", "Restaurant.Services\Restaurant.Services.csproj", "{6EF29BFC-A383-4EFC-938F-67C2CFF505B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.WebServer", "Restaurant.WebServer\Restaurant.WebServer.csproj", "{E41FCB61-751E-4977-B267-530E13453A2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.WebServer", "Restaurant.WebServer\Restaurant.WebServer.csproj", "{E41FCB61-751E-4977-B267-530E13453A2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.UnitTest", "Restaurant.UnitTest\Restaurant.UnitTest.csproj", "{6BBA5E8C-7D4D-4F62-8E6E-1178842352A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.UnitTest", "Restaurant.UnitTest\Restaurant.UnitTest.csproj", "{6BBA5E8C-7D4D-4F62-8E6E-1178842352A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Shared", "Restaurant.Shared\Restaurant.Shared.csproj", "{3C6565A3-7BB1-4EE9-BCFB-200C5A7FC6D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Shared", "Restaurant.Shared\Restaurant.Shared.csproj", "{3C6565A3-7BB1-4EE9-BCFB-200C5A7FC6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Client", "Restaurant.Client\Restaurant.Client.csproj", "{D1253A85-646D-4F08-B34C-321D99E7E693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Client", "Restaurant.Client\Restaurant.Client.csproj", "{D1253A85-646D-4F08-B34C-321D99E7E693}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
