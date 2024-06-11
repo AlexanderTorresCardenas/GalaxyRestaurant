@@ -14,7 +14,7 @@ namespace Restaurant.Entities
         public DateTime? FechaNacimiento { get; set; }
         public TipoDocumento TipoDocumento { get; set; } = default!;
         public string NumeroDocumento { get; set; } = default!;
-        public string? NumeroTelefono { get; set; }
+        public string? NumeroTelefonoMovil { get; set; }
         public string? CorreoElectronico { get; set; }
     }
 }

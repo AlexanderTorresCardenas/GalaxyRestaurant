@@ -11,7 +11,6 @@ namespace Restaurant.Entities
         public string Nombre { get; set; } = default!;
         public string Descripcion { get; set; } = default!;
         public decimal Precio { get; set; } = default!;
-
         public Categoria Categoria { get; set; }
         public int CategoriaId { get; set; } = default!;
 

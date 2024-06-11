@@ -7,7 +7,7 @@ using Restaurant.Entities.Enums;
 
 namespace Restaurant.Entities
 {
-    public class Empleado
+    public class Mesero: EntityBase
     {
         public string Nombres { get; set; } = default!;
         public string Apellidos { get; set; } = default!;
