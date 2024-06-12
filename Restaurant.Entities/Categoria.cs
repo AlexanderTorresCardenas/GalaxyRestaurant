@@ -9,5 +9,6 @@ namespace Restaurant.Entities
     public class Categoria : EntityBase
     {
         public string Descripcion { get; set; } = default!;
+        public string? Comentarios { get; set; }
     }
 }
