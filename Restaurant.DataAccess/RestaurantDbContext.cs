@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.DataAccess;
 
-public class RestaurantDbContext : DbContext
+public class RestaurantDbContext : IdentityDbContext<IdentityUserRestaurant>//DbContext para las tablas del sistema
 {
     public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
     {
