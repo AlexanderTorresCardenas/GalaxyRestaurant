@@ -2,6 +2,7 @@
 
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject SweetAlertService Swal
 @attribute [Authorize(Roles = Constantes.RolAdministrador)]
 
 <h1>Platos</h1>
@@ -83,8 +84,34 @@ else
 
     private async Task Eliminar(int id)
     {
-        await Http.DeleteAsync($"api/Productos/{id}");
-        await Cargar();
+        var result = await Swal.FireAsync(new SweetAlertOptions
+            {
+
+                Title = "Eliminar",
+                Text = "Seguro de eliminar el registro?",
+                Icon = SweetAlertIcon.Question,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Aceptar",
+                ConfirmButtonColor = "#3085d6",
+                CancelButtonText = "Cancelar",
+                CancelButtonColor = "#d33"
+            });
+
+        if (result.IsConfirmed)
+        {
+            var ok = Swal.FireAsync(
+               new SweetAlertOptions
+                   {
+                       Text = "Eliminado",
+                       Icon = SweetAlertIcon.Success,
+                       ConfirmButtonText = "OK"
+                   }
+            );
+            await Http.DeleteAsync($"api/Productos/{id}");
+            await Cargar();
+        }
+
+        
     }
 
 }

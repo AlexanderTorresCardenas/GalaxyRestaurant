@@ -1,25 +1,37 @@
 ﻿@inject SweetAlertService Swal
 
-<EditForm Model="Categoria" OnSubmit="Grabar">
+<div class="container">
+    <dvi class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg mt-5">
+                <div class="card-header">
+                    <h3>Categoria de platos para restaurant</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="Categoria" OnSubmit="Grabar">
+                        <DataAnnotationsValidator />
+                        <div class="row mb-3">
+                            <label class="form-label" for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" class="form-control" @bind-value="Categoria.Descripcion" autocomplete="off" />
+                            <ValidationMessage For="() => Categoria.Descripcion"></ValidationMessage>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="form-label" for="comentarios">Comentarios:</label>
+                            <input type="text" id="comentarios" class="form-control" @bind-value="Categoria.Comentarios" autocomplete="off" />
+                            <ValidationMessage For="() => Categoria.Descripcion"></ValidationMessage>
+                        </div>
 
-    <div class="row row-cols-1 row-cols-md-2">
-        <div class="col">
-            <div class="mb-3 row">
-                <label class="form-label" for="nombre">Nombre:</label>
-                <input type="text" id="nombre" class="form-control" @bind-value="Categoria.Descripcion" />
-            </div>
-            <div class="mb-3 row">
-                <label class="form-label" for="comentarios">Comentarios:</label>
-                <input type="text" id="comentarios" class="form-control" @bind-value="Categoria.Comentarios" />
+                       
+                        <div class="row row-cols-1">
+                            <button type="submit" class="btn btn-primary w-25">Grabar</button>
+                        </div>
+
+                    </EditForm>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row row-cols-1">
-        <button type="submit" class="btn btn-primary w-25">Grabar</button>
-    </div>
-
-</EditForm>
-
+    </dvi>
+</div>
 @code {
 
     [Parameter]

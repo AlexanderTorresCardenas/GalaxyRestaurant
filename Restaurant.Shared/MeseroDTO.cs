@@ -14,7 +14,7 @@ namespace Restaurant.Shared
         [Required(ErrorMessage = Constantes.CampoRequerido)]
         [Display(Name = "Apellidos")]
         public string Apellidos { get; set; } = default!;
-
+    
         public TipoDocumento TipoDocumento { get; set; } = default!;
 
         [Required(ErrorMessage = Constantes.CampoRequerido)]
