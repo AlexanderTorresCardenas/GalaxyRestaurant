@@ -4,18 +4,30 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.DataAccess;
 using Restaurant.Repositories.Implementaciones;
+using Restaurant.Repositories.Implemntaciones;
 using Restaurant.Repositories.Interfaces;
 using Restaurant.Server.Services;
-using Restaurant.Services;
+using Restaurant.Services.Implementaciones;
+using Restaurant.Services.Interfaces;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+const string corConfiguration = "Blazor";
 
 // Add services to the container.
-
 builder.Services.AddDbContext<RestaurantDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantDBConnection"));
+});
+
+builder.Services.AddCors(policy =>
+{
+    policy.AddPolicy(corConfiguration, config =>
+    {
+        config.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 // Configuramos ASP.NET Identity Core
@@ -57,8 +69,14 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddControllers();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
-//builder.Services.AddTransient<IProductoRepository, ProductoRepository>();
+builder.Services.AddTransient<IProductoRepository, ProductoRepository>();
+builder.Services.AddTransient<IMeseroRepository, MeseroRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+
+if (builder.Environment.IsDevelopment())
+    builder.Services.AddTransient<IFileUploader, FileUploader>();
+else
+    builder.Services.AddTransient<IFileUploader, AzureFileUploader>();
 
 //Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -75,7 +93,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
+
+app.UseStaticFiles();
+
+app.UseCors(corConfiguration);
 
 app.MapControllers();
 

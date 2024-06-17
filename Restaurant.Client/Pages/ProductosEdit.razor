@@ -1,0 +1,48 @@
+﻿@page "/productos/edit/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@if (ProductoModificado.Id == 0)
+{
+    <p>Cargando....</p>
+}
+else
+{
+    <ProductoEditPage OnGrabar="Actualizar"
+                      Categorias="Categorias"
+                      Request="ProductoModificado"
+                      Titulo="Actualizar plato" />
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public ProductoDTORequest ProductoModificado { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var response = await Http.GetFromJsonAsync<ProductoDTORequest>($"api/Productos/{Id}");
+        if (response != null)
+        {
+            ProductoModificado = response;
+        }
+    }
+
+    private async Task Actualizar()
+    {
+        await Http.PutAsJsonAsync($"api/Productos/{Id}", ProductoModificado);
+
+        NavigationManager.NavigateTo("productos/list");
+    }
+
+    public ICollection<CategoriaDTO>? Categorias { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Categorias = await Http.GetFromJsonAsync<ICollection<CategoriaDTO>>("api/Categorias");
+    }
+
+
+}

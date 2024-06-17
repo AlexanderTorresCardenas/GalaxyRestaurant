@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Restaurant.Services;
+using Restaurant.Services.Interfaces;
 using Restaurant.Shared.Request;
 
 namespace Restaurant.Server.Controllers

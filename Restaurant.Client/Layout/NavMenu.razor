@@ -1,0 +1,105 @@
+﻿@using Restaurant.Client.Pages
+@* @using Restaurant.Client.Services *@
+@inject NavigationManager NavigationManager
+@inject SweetAlertService Swal
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<header>
+     <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+             <NavLink class="navbar-brand" href="/">
+                <img src="assets/images/galaxy-training-logo.png" alt="Restaurant"/>
+            </NavLink> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navegacion">
+                <ul class="navbar-nav me-auto mb-2">
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/">Inicio</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="categorias/list">Categorias</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="productos/list">Platos</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/meseros/list">Meseros</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="clientes/list">Clientes</NavLink>
+                    </li>
+                 
+                     <AuthorizeView Roles="@Constantes.RolAdministrador">
+                        <Authorized>
+                            <li class="nav-item">
+                                <NavLink class="nav-link text-white" href="dashboard">Dashboard</NavLink>
+                            </li>
+                        </Authorized>
+                    </AuthorizeView>
+                </ul>
+            </div>
+            <a class="btn btn-outline-secondary ms-auto me-3" href="carrito">
+                <i class="bi bi-cart me-1"></i>
+                Pedido
+                @* <span class="badge bg-info text-white rounded-pill">@MostrarCantidadCarrito()</span> *@
+            </a>
+            <div>
+                 <AuthorizeView>
+                     <Authorized>
+                        <NavLink class="navbar-text text-white">
+                            <i class="bi bi-person-fill me-1"></i>@context.User.Identity!.Name
+                        </NavLink>
+                        <button class="btn btn-outline-dark" @onclick="CerrarSesion"><i class="bi bi-door-open me-1"></i>Salir</button> 
+                    </Authorized> 
+                     <NotAuthorized>
+                        <NavLink class="btn btn-outline-info" href="login"><i class="bi bi-arrow-right-circle me-1"></i>Ingresar</NavLink>
+                        <NavLink class="btn btn-outline-success" href="register"><i class="bi bi-person-fill-add me-1"></i>Registrarse</NavLink>
+                    </NotAuthorized> 
+                </AuthorizeView> 
+            </div>
+        </div>
+    </nav>
+</header>
+
+@code {
+
+
+    private async Task CerrarSesion()
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Desea salir de la aplicacion?",
+            Icon = SweetAlertIcon.Question,
+            ShowCancelButton = true,
+            ConfirmButtonText = "Sí",
+            CancelButtonText = "Por ahora no"
+        });
+
+        if (result.IsConfirmed)
+        {
+            var auth = (AuthenticationService)AuthenticationStateProvider;
+            await auth.Autenticar(null);
+            NavigationManager.NavigateTo("/", forceLoad: true);
+        }
+    }
+
+    // public void Dispose()
+    // {
+    //     CarritoProxy.ActualizarVista += StateHasChanged;
+    // }
+
+    // protected override void OnInitialized()
+    // {
+    //     CarritoProxy.ActualizarVista += StateHasChanged;
+    // }
+
+    // private int MostrarCantidadCarrito()
+    // {
+    //     return CarritoProxy.CantidadProductos();
+    // }
+
+}

@@ -1,7 +1,7 @@
 ﻿using Restaurant.Shared.Request;
 using Restaurant.Shared.Response;
 
-namespace Restaurant.Services;
+namespace Restaurant.Services.Interfaces;
 
 public interface IUserService
 {

@@ -4,8 +4,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security;
 using System.Text;
-
-using Restaurant.Services;
 using Restaurant.Shared.Response;
 using Restaurant.Shared.Request;
 using Restaurant.Entities;
@@ -14,8 +12,9 @@ using Restaurant.Repositories.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Restaurant.DataAccess;
 using Microsoft.Extensions.Logging;
+using Restaurant.Services.Interfaces;
 
-namespace Restaurant.Server.Services;
+namespace Restaurant.Services.Implementaciones;
 
 public class UserService : IUserService
 {

@@ -1,0 +1,89 @@
+﻿@inject SweetAlertService Swal
+
+<div class="container">
+    <dvi class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg mt-5">
+                <div class="card-header">
+                    <h3>Agregar mesero para restaurant</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="Mesero" OnSubmit="Grabar">
+                        <DataAnnotationsValidator />
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nombre" @bind-value="Mesero.Nombres" autocomplete="off">
+                            <label for="nombre">Nombres</label>
+                        <ValidationMessage For="() => Mesero.Nombres"></ValidationMessage>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="apelidos" @bind-value="Mesero.Apellidos" autocomplete="off">
+                            <label for="apellidos">Apellidos</label>
+                            <ValidationMessage For="() => Mesero.Apellidos"></ValidationMessage>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="tipodocumento" @bind-value="Mesero.TipoDocumento" autocomplete="off">
+                            <label for="tipodocumento">Tipo de documento</label>
+                            <ValidationMessage For="() => Mesero.TipoDocumento"></ValidationMessage>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="numerodocumento" @bind-value="Mesero.NumeroDocumento" autocomplete="off">
+                            <label for="numerodocumento">Num. de documento</label>
+                            <ValidationMessage For="() => Mesero.NumeroDocumento"></ValidationMessage>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="numerotelefomo" @bind-value="Mesero.NumeroTelefono" autocomplete="off">
+                            <label for="numerotelefomo">Num. Telefono</label>
+                            <ValidationMessage For="() => Mesero.NumeroTelefono"></ValidationMessage>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="correoelectronico" @bind-value="Mesero.CorreoElectronico" autocomplete="off">
+                            <label for="correoelectronico">Correo electronico</label>
+                            <ValidationMessage For="() => Mesero.CorreoElectronico"></ValidationMessage>
+                        </div>
+
+                        <div class="d-grid gap-1 mt-3">
+                            <button class="btn btn-primary" type="submit">Grabar</button>
+                        </div>
+
+
+                     </EditForm>
+                </div>
+            </div>
+        </div>
+    </dvi>
+</div>
+
+
+@code {
+    [Parameter]
+    public MeseroDTO Mesero { get; set; } = new MeseroDTO();
+
+    [Parameter]
+    public EventCallback OnGrabar { get; set; }
+
+    private async void Grabar()
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Guardar",
+                Text = "Desea guardar el registro?",
+                Icon = SweetAlertIcon.Question,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Aceptar",
+                ConfirmButtonColor = "#3085d6",
+                CancelButtonText = "Cancelar",
+                CancelButtonColor = "#d33"
+            });
+
+        if (result.IsConfirmed)
+        {
+            OnGrabar.InvokeAsync();
+        }
+    }
+
+}
