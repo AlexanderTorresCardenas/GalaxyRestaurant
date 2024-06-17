@@ -1,0 +1,62 @@
+﻿@page "/clientes/list"
+
+@using Restaurant.Shared
+@using Microsoft.AspNetCore.Authorization
+@inject HttpClient Http
+@attribute [Authorize(Roles = Constantes.RolAdministrador)]
+
+<PageTitle>Clientes</PageTitle>
+<h1>Clientes</h1>
+
+@if (clientes is null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="table-primary">
+                <th>Id</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Fecha nac.</th>
+                <th>Tipo Documento</th>
+                <th>Numero Documento</th>
+                <th>Numero Telefono</th>
+                <th>Correo Electronico</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in clientes)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombres</td>
+                    <td>@item.Apellidos</td>
+                    <td>@item.FechaNacimiento</td>
+                    <td>@item.TipoDocumento</td>
+                    <td>@item.NumeroDocumento</td>
+                    <td>@item.NumeroTelefonoMovil</td>
+                    <td>@item.CorreoElectronico</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+@code {
+    public ICollection<ClienteDTO>? clientes { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Cargar();
+    }
+
+    private async Task Cargar()
+    {
+        clientes = await Http.GetFromJsonAsync<ClienteDTO[]>("api/Clientes");
+    }
+}
