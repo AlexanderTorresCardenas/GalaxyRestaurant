@@ -1,0 +1,19 @@
+﻿@page "/meseros/crear"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Meseros</h3>
+
+<MeseroEditPage Mesero="Mesero" OnGrabar="Grabar" />
+
+@code {
+
+    public MeseroDTO Mesero { get; set; } = new MeseroDTO();
+
+    private async Task Grabar()
+    {
+        await Http.PostAsJsonAsync("api/meseros", Mesero);
+        NavigationManager.NavigateTo("/meseros/list");
+    }
+
+}

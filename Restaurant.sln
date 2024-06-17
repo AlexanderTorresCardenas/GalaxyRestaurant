@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Shared", "Restau
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Client", "Restaurant.Client\Restaurant.Client.csproj", "{D1253A85-646D-4F08-B34C-321D99E7E693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Server", "Restaurant.Server\Restaurant.Server.csproj", "{7F34C388-1D94-44B9-9C9C-9F19F1B100A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Server", "Restaurant.Server\Restaurant.Server.csproj", "{7F34C388-1D94-44B9-9C9C-9F19F1B100A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

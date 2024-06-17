@@ -1,0 +1,30 @@
+﻿@page "/meseros/editar/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<MeseroEditPage Mesero="Registro" OnGrabar="Actualizar" />
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public MeseroDTO Registro { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var response = await Http.GetFromJsonAsync<MeseroDTO>($"api/meseros/{Id}");
+        if (response is not null)
+        {
+            Registro = response;
+        }
+    }
+
+    private async Task Actualizar()
+    {
+        await Http.PutAsJsonAsync($"api/meseros/{Id}", Registro);
+
+        NavigationManager.NavigateTo("/meseros/list");
+    }
+
+}

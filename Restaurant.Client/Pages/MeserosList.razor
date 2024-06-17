@@ -1,0 +1,110 @@
+﻿@page "/meseros/list"
+
+@using Restaurant.Shared
+@using Microsoft.AspNetCore.Authorization
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject SweetAlertService Swal
+
+@attribute [Authorize(Roles = Constantes.RolAdministrador)]
+
+<PageTitle>Meseros</PageTitle>
+<h1>Meseros</h1>
+
+<a class="btn btn-outline-primary" href="meseros/crear">Nuevo mesero</a>
+
+<hr />
+
+@if (meseros is null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="table-primary">
+                <th>Id</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>TipoDocumento</th>
+                <th>NumeroDocumento</th>
+                <th>NumeroTelefono</th>
+                <th>CorreoElectronico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in meseros)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombres</td>
+                    <td>@item.Apellidos</td>
+                    <td>@item.TipoDocumento</td>
+                    <td>@item.NumeroDocumento</td>
+                    <td>@item.NumeroTelefono</td>
+                    <td>@item.CorreoElectronico</td>
+                    <td>
+                        <button class="btn btn-outline-secondary" @onclick="() => Editar(item.Id)"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-outline-danger" @onclick="() => Eliminar(item.Id)"><i class="bi bi-trash3"></i></button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+@code {
+    public ICollection<MeseroDTO>? meseros { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Cargar();
+    }
+
+    private async Task Cargar()
+    {
+        meseros = await Http.GetFromJsonAsync<MeseroDTO[]>("api/Meseros");
+    }
+
+    private void Editar(int id)
+    {
+        NavigationManager.NavigateTo($"meseros/editar/{id}");
+    }
+
+    private async Task Eliminar(int id)
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+            {
+
+                Title = "Eliminar",
+                Text = "Seguro de eliminar el registro?",
+                Icon = SweetAlertIcon.Question,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Aceptar",
+                ConfirmButtonColor = "#3085d6",
+                CancelButtonText = "Cancelar",
+                CancelButtonColor = "#d33"
+            });
+
+        if (result.IsConfirmed)
+        {
+            var ok = Swal.FireAsync(
+               new SweetAlertOptions
+                   {
+                       Text = "Eliminado",
+                       Icon = SweetAlertIcon.Success,
+                       ConfirmButtonText = "OK"
+                   }
+            );
+            await Http.DeleteAsync($"api/Meseros/{id}");
+            await Cargar();
+        }
+
+    }
+
+}

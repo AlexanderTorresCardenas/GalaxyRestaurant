@@ -28,7 +28,7 @@ namespace Restaurant.Server.Controllers
 
             var categoria = new Categoria
             {
-                Descripcion = request.Nombre,
+                Descripcion = request.Descripcion,
                 Comentarios = request.Comentarios
             };
             await _repository.AddAsync(categoria);
@@ -54,7 +54,7 @@ namespace Restaurant.Server.Controllers
             {
                 return NotFound();
             }
-            categoria.Descripcion = request.Nombre;
+            categoria.Descripcion = request.Descripcion;
             categoria.Comentarios = request.Comentarios;
             await _repository.UpdateAsync();
             return Ok();

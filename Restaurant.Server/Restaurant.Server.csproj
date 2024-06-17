@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Restaurant.Shared\Restaurant.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

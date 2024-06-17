@@ -2,7 +2,7 @@
 
 namespace Restaurant.Shared.Request;
 
-public class ProductoDtoRequest
+public class ProductoDTORequest
 {
     public int Id { get; set; }
   
@@ -14,8 +14,8 @@ public class ProductoDtoRequest
     public string Descripcion { get; set; } = default!;
 
     [Range(1, 9999, ErrorMessage = Constantes.ValidacionRango)]
-    [Display(Name = "Precio Unitario")]
-    public float PrecioUnitario { get; set; }
+    [Display(Name = "Precio")]
+    public decimal Precio { get; set; }
 
     public int CategoriaId { get; set; }
 
